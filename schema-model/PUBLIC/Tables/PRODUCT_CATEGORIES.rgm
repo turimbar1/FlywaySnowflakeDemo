@@ -1,0 +1,13 @@
+table "PUBLIC"."PRODUCT_CATEGORIES" {
+  columns = (
+    column "CATEGORY_ID" {
+      type = NUMBER(5,0)
+      null = NOT NULL
+    }
+    column "CATEGORY_NAME" {
+      type = VARCHAR(50)
+      null = NOT NULL
+    }
+  )
+}
+

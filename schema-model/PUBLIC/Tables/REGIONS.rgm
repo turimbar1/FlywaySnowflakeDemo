@@ -1,0 +1,13 @@
+table "PUBLIC"."REGIONS" {
+  columns = (
+    column "REGION_ID" {
+      type = NUMBER(5,0)
+      null = NOT NULL
+    }
+    column "REGION_NAME" {
+      type = VARCHAR(50)
+      null = NOT NULL
+    }
+  )
+}
+

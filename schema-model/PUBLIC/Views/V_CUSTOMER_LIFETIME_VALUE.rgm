@@ -1,0 +1,20 @@
+view "PUBLIC"."V_CUSTOMER_LIFETIME_VALUE" {
+  body = """-
+
+SELECT
+    c.CUSTOMER_ID,
+    c.CUSTOMER_NAME,
+    c.COUNTRY,
+    r.REGION_NAME,
+    MIN(o.ORDER_DATE)                                                                     AS FIRST_ORDER_DATE,
+    MAX(o.ORDER_DATE)                                                                     AS LAST_ORDER_DATE,
+    COUNT(DISTINCT o.ORDER_ID)                                                            AS ORDER_COUNT,
+    ROUND(COALESCE(SUM(oi.QUANTITY * oi.UNIT_PRICE * (1 - oi.DISCOUNT_PCT)), 0), 2)       AS LIFETIME_VALUE
+FROM CUSTOMERS c
+JOIN REGIONS r         ON r.REGION_ID   = c.REGION_ID
+LEFT JOIN ORDERS o     ON o.CUSTOMER_ID = c.CUSTOMER_ID AND o.STATUS <> 'CANCELLED'
+LEFT JOIN ORDER_ITEMS oi ON oi.ORDER_ID = o.ORDER_ID
+GROUP BY c.CUSTOMER_ID, c.CUSTOMER_NAME, c.COUNTRY, r.REGION_NAME;
+"""
+}
+

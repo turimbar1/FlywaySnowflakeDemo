@@ -1,0 +1,18 @@
+view "PUBLIC"."V_SALES_BY_REGION" {
+  body = """-
+
+SELECT
+    r.REGION_NAME,
+    COUNT(DISTINCT o.ORDER_ID)                                                AS ORDER_COUNT,
+    COUNT(DISTINCT o.CUSTOMER_ID)                                             AS CUSTOMER_COUNT,
+    ROUND(SUM(oi.QUANTITY * oi.UNIT_PRICE * (1 - oi.DISCOUNT_PCT)), 2)        AS NET_REVENUE,
+    ROUND(SUM(oi.QUANTITY * oi.UNIT_PRICE * (1 - oi.DISCOUNT_PCT))
+          / NULLIF(COUNT(DISTINCT o.ORDER_ID), 0), 2)                         AS AVG_ORDER_VALUE
+FROM REGIONS r
+JOIN CUSTOMERS   c  ON c.REGION_ID   = r.REGION_ID
+JOIN ORDERS      o  ON o.CUSTOMER_ID = c.CUSTOMER_ID AND o.STATUS <> 'CANCELLED'
+JOIN ORDER_ITEMS oi ON oi.ORDER_ID   = o.ORDER_ID
+GROUP BY r.REGION_NAME;
+"""
+}
+

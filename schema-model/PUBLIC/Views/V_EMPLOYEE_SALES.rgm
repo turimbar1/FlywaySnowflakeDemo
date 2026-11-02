@@ -1,0 +1,21 @@
+view "PUBLIC"."V_EMPLOYEE_SALES" {
+  body = """-
+
+SELECT
+    e.EMPLOYEE_ID,
+    e.FIRST_NAME || ' ' || e.LAST_NAME                                                    AS EMPLOYEE_NAME,
+    e.JOB_TITLE,
+    m.FIRST_NAME || ' ' || m.LAST_NAME                                                    AS MANAGER_NAME,
+    r.REGION_NAME                                                                         AS HOME_REGION,
+    COUNT(DISTINCT o.ORDER_ID)                                                            AS ORDER_COUNT,
+    ROUND(COALESCE(SUM(oi.QUANTITY * oi.UNIT_PRICE * (1 - oi.DISCOUNT_PCT)), 0), 2)       AS NET_REVENUE
+FROM EMPLOYEES e
+JOIN REGIONS r        ON r.REGION_ID   = e.REGION_ID
+LEFT JOIN EMPLOYEES m ON m.EMPLOYEE_ID = e.MANAGER_ID
+LEFT JOIN ORDERS o    ON o.EMPLOYEE_ID = e.EMPLOYEE_ID AND o.STATUS <> 'CANCELLED'
+LEFT JOIN ORDER_ITEMS oi ON oi.ORDER_ID = o.ORDER_ID
+GROUP BY e.EMPLOYEE_ID, e.FIRST_NAME, e.LAST_NAME, e.JOB_TITLE,
+         m.FIRST_NAME, m.LAST_NAME, r.REGION_NAME;
+"""
+}
+

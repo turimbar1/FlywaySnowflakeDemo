@@ -1,0 +1,26 @@
+view "PUBLIC"."V_ORDER_SUMMARY" {
+  body = """-
+
+SELECT
+    o.ORDER_ID,
+    o.ORDER_DATE,
+    o.STATUS,
+    o.SHIP_DATE,
+    c.CUSTOMER_NAME,
+    r.REGION_NAME,
+    e.FIRST_NAME || ' ' || e.LAST_NAME                                        AS SALES_REP,
+    COUNT(oi.ORDER_ITEM_ID)                                                   AS LINE_COUNT,
+    SUM(oi.QUANTITY)                                                          AS TOTAL_UNITS,
+    ROUND(SUM(oi.QUANTITY * oi.UNIT_PRICE), 2)                                AS GROSS_AMOUNT,
+    ROUND(SUM(oi.QUANTITY * oi.UNIT_PRICE * oi.DISCOUNT_PCT), 2)              AS DISCOUNT_AMOUNT,
+    ROUND(SUM(oi.QUANTITY * oi.UNIT_PRICE * (1 - oi.DISCOUNT_PCT)), 2)        AS NET_AMOUNT
+FROM ORDERS o
+JOIN CUSTOMERS   c  ON c.CUSTOMER_ID = o.CUSTOMER_ID
+JOIN REGIONS     r  ON r.REGION_ID   = c.REGION_ID
+JOIN EMPLOYEES   e  ON e.EMPLOYEE_ID = o.EMPLOYEE_ID
+JOIN ORDER_ITEMS oi ON oi.ORDER_ID   = o.ORDER_ID
+GROUP BY o.ORDER_ID, o.ORDER_DATE, o.STATUS, o.SHIP_DATE,
+         c.CUSTOMER_NAME, r.REGION_NAME, e.FIRST_NAME, e.LAST_NAME;
+"""
+}
+

@@ -1,0 +1,29 @@
+table "PUBLIC"."ORDER_ITEMS" {
+  columns = (
+    column "ORDER_ITEM_ID" {
+      type = NUMBER(10,0)
+      null = NOT NULL
+    }
+    column "ORDER_ID" {
+      type = NUMBER(10,0)
+      null = NOT NULL
+    }
+    column "PRODUCT_ID" {
+      type = NUMBER(10,0)
+      null = NOT NULL
+    }
+    column "QUANTITY" {
+      type = NUMBER(10,0)
+      null = NOT NULL
+    }
+    column "UNIT_PRICE" {
+      type = NUMBER(10,2)
+      null = NOT NULL
+    }
+    column "DISCOUNT_PCT" {
+      type = NUMBER(5,4)
+      null = NOT NULL
+    }
+  )
+}
+

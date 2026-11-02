@@ -1,0 +1,33 @@
+table "PUBLIC"."CUSTOMERS" {
+  columns = (
+    column "CUSTOMER_ID" {
+      type = NUMBER(10,0)
+      null = NOT NULL
+    }
+    column "CUSTOMER_NAME" {
+      type = VARCHAR(100)
+      null = NOT NULL
+    }
+    column "CONTACT_EMAIL" {
+      type = VARCHAR(100)
+      null = NOT NULL
+    }
+    column "CITY" {
+      type = VARCHAR(50)
+      null = NOT NULL
+    }
+    column "COUNTRY" {
+      type = VARCHAR(50)
+      null = NOT NULL
+    }
+    column "REGION_ID" {
+      type = NUMBER(5,0)
+      null = NOT NULL
+    }
+    column "CREATED_DATE" {
+      type = DATE
+      null = NOT NULL
+    }
+  )
+}
+

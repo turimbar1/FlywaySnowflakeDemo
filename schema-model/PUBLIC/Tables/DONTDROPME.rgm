@@ -1,0 +1,13 @@
+table "PUBLIC"."DONTDROPME" {
+  columns = (
+    column "DROP_ID" {
+      type = NUMBER(5,0)
+      null = NOT NULL
+    }
+    column "DROP_NAME" {
+      type = VARCHAR(50)
+      null = NOT NULL
+    }
+  )
+}
+

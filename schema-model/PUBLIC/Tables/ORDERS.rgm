@@ -1,0 +1,28 @@
+table "PUBLIC"."ORDERS" {
+  columns = (
+    column "ORDER_ID" {
+      type = NUMBER(10,0)
+      null = NOT NULL
+    }
+    column "CUSTOMER_ID" {
+      type = NUMBER(10,0)
+      null = NOT NULL
+    }
+    column "EMPLOYEE_ID" {
+      type = NUMBER(10,0)
+      null = NOT NULL
+    }
+    column "ORDER_DATE" {
+      type = DATE
+      null = NOT NULL
+    }
+    column "STATUS" {
+      type = VARCHAR(20)
+      null = NOT NULL
+    }
+    column "SHIP_DATE" {
+      type = DATE
+    }
+  )
+}
+

@@ -1,0 +1,33 @@
+table "PUBLIC"."PRODUCTS" {
+  columns = (
+    column "PRODUCT_ID" {
+      type = NUMBER(10,0)
+      null = NOT NULL
+    }
+    column "SKU" {
+      type = VARCHAR(20)
+      null = NOT NULL
+    }
+    column "PRODUCT_NAME" {
+      type = VARCHAR(100)
+      null = NOT NULL
+    }
+    column "CATEGORY_ID" {
+      type = NUMBER(5,0)
+      null = NOT NULL
+    }
+    column "UNIT_PRICE" {
+      type = NUMBER(10,2)
+      null = NOT NULL
+    }
+    column "UNIT_COST" {
+      type = NUMBER(10,2)
+      null = NOT NULL
+    }
+    column "IS_ACTIVE" {
+      type = BOOLEAN
+      null = NOT NULL
+    }
+  )
+}
+

@@ -1,0 +1,36 @@
+table "PUBLIC"."EMPLOYEES" {
+  columns = (
+    column "EMPLOYEE_ID" {
+      type = NUMBER(10,0)
+      null = NOT NULL
+    }
+    column "FIRST_NAME" {
+      type = VARCHAR(50)
+      null = NOT NULL
+    }
+    column "LAST_NAME" {
+      type = VARCHAR(50)
+      null = NOT NULL
+    }
+    column "EMAIL" {
+      type = VARCHAR(100)
+      null = NOT NULL
+    }
+    column "JOB_TITLE" {
+      type = VARCHAR(50)
+      null = NOT NULL
+    }
+    column "HIRE_DATE" {
+      type = DATE
+      null = NOT NULL
+    }
+    column "MANAGER_ID" {
+      type = NUMBER(10,0)
+    }
+    column "REGION_ID" {
+      type = NUMBER(5,0)
+      null = NOT NULL
+    }
+  )
+}
+
